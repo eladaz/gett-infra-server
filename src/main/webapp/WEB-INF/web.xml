@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app.xsd"
+         version="3.1">
+
+    <!--Set Spring configuration file to import all all beans from  SpringIOC location -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/server-dispatcher-application-context.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/error-404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <location>/errors/error.jsp</location>
+    </error-page>
+
+    <servlet>
+        <servlet-name>server-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <multipart-config>
+            <location>/tmp</location>
+            <max-file-size>1024000</max-file-size><!--1MB-->
+            <max-request-size>20971520</max-request-size><!--20MB-->
+            <file-size-threshold>1024000</file-size-threshold>
+        </multipart-config>
+
+        <init-param>       
+            <param-name>dirAllowed</param-name>
+            <param-value>false</param-value>   
+        </init-param>
+
+        <init-param>
+            <param-name>Cache-Control</param-name>
+            <param-value>no-cache, must-revalidate</param-value>
+        </init-param>
+
+        <init-param>
+            <!-- this is for devices between server and client, like VIP, F5, load-balancers, caches and proxies -->
+            <param-name>Pragma</param-name>
+            <param-value>no-cache</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>server-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
