@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.gett.infra.hibernate.pojo.datagenerator.PerfectoDevice" table="PERFECTO_DEVICE">
+        <id name="id" type="int" column="ID">
+            <generator class="identity"/>
+        </id>
+        <property name="deviceId" type="int">
+            <column name="DEVICE_ID"/>
+        </property>
+        <property name="lastDriverScrum" type="java.lang.String">
+            <column name="LAST_DRIVER_SCRUM"/>
+        </property>
+        <property name="lastRiderScrum" type="java.lang.String">
+            <column name="LAST_RIDER_SCRUM"/>
+        </property>
+        <property name="lastDriverInstalledApp" type="java.lang.String">
+            <column name="LAST_DRIVER_INSTALLED_APP"/>
+        </property>
+        <property name="lastRiderInstalledApp" type="java.lang.String">
+            <column name="LAST_RIDER_INSTALLED_APP"/>
+        </property>
+        <property name="lastDriverPhoneNumber" type="java.lang.String">
+            <column name="LAST_DRIVER_PHONE_NUMBER"/>
+        </property>
+        <property name="lastRiderPhoneNumber" type="java.lang.String">
+            <column name="LAST_RIDER_PHONE_NUMBER"/>
+        </property>
+    </class>
+</hibernate-mapping>

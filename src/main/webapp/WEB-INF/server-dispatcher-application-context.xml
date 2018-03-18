@@ -7,7 +7,7 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <import resource="classpath*:rest-service-context.xml"/>
+    <import resource="classpath*:server-dispatcher-context.xml"/>
 
     <mvc:annotation-driven/>
 

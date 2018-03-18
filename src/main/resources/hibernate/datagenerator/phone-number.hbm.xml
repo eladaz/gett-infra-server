@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.gett.infra.hibernate.pojo.datagenerator.PhoneNumber" table="PHONE_NUMBER">
+        <id name="id" type="int" column="ID">
+            <generator class="identity"/>
+        </id>
+        <property name="scrumName" type="java.lang.String">
+            <column name="SCRUM_NAME"/>
+        </property>
+        <property name="phoneNumber" type="java.lang.String">
+            <column name="PHONE_NUMBER" unique="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
