@@ -8,9 +8,10 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "angular-ui-grid": "^4.4.1",
     "grunt": "~0.4.1",
-    "grunt-cli": "~1.2.0",
     "grunt-bump": "0.0.6",
+    "grunt-cli": "~1.2.0",
     "grunt-coffeelint": "~0.0.10",
     "grunt-contrib-clean": "^0.4.1",
     "grunt-contrib-coffee": "^0.7.0",

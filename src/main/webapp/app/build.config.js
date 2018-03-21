@@ -66,11 +66,23 @@ module.exports = {
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-ui-utils/modules/route/route.js'
+      'vendor/angular-ui-utils/modules/route/route.js',
+      'vendor/angular-ui-grid/ui-grid.min.js',
+      'vendor/angular-ui-grid/ui-grid.core.min.js',
+      'vendor/angular-ui-grid/ui-grid.auto-resize.min.js',
+      'vendor/angular-ui-grid/ui-grid.exporter.min.js',
+      'vendor/angular-ui-grid/ui-grid.selection.min.js',
+      'vendor/angular-animate/angular-animate.min.js',
+      'vendor/angular-touch/angular-touch.min.js'
     ],
     css: [
+        'vendor/angular-ui-grid/ui-grid.min.css'
     ],
     assets: [
+        'vendor/angular-ui-grid/ui-grid.eot',
+        'vendor/angular-ui-grid/ui-grid.svg',
+        'vendor/angular-ui-grid/ui-grid.ttf',
+        'vendor/angular-ui-grid/ui-grid.woff'
     ]
-  },
+  }
 };

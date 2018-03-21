@@ -1,0 +1,39 @@
+<div ng-controller="EntityCtrl" class="navbar navbar-default entity-navbar">
+    <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-default btn-bordered disabled navbar-title">
+            {{default_select}}
+        </button>
+        <button type="button" class="btn dropdown-toggle navbar-caret">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="choice in dropdown_items">
+                <a href ui-sref="entity" ng-click="go_to(choice)">{{choice}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <div class="vertical-Line"></div>
+        <!--<img class="btn-custom-toolbar" src="assets/plus.svg">-->
+    </div>
+    <div class="btn-group">
+        <ul class="nav navbar-nav">
+            <li ui-sref-active="active">
+                <a href ui-sref="home" class="li-custom-btn"><i class="fa fa-plus"></i>
+                    Add
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a href ui-sref="about" class="li-custom-btn"><i class="fa fa-minus"></i>
+                    Delete
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div ng-controller="EntityCtrl" class="jumbotron entity-grid-container" style="margin: 0px 0 0px 0;padding: 10px;">
+    <div id="grid1" ui-grid="gridOptions" class="grid" ui-grid-auto-resize ui-grid-exporter ui-grid-selection ng-style="getTableHeight()"></div>
+</div>
+

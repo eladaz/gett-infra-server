@@ -5,10 +5,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
+
+import static com.gett.infra.app.utils.Paths.*;
+
+@Component
 public class HibernateUtil {
 
     private static Session session;
@@ -19,8 +25,8 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory() {
         try {
             configuration = new Configuration();
-            configuration.configure("hibernate/hibernate.cfg.xml");
-            addMappingFiles("hibernate/datagenerator");
+            configuration.configure(HIBERNATE_CONF_FILE);
+            addMappingFiles(HIBERNATE_MAPPING_DIR);
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             // Create the SessionFactory from hibernate.cfg.xml
@@ -37,7 +43,7 @@ public class HibernateUtil {
         File[] files = new File(HibernateUtil.class.getClassLoader().getResource(dir).getPath()).listFiles();
 
         for(File file : files) {
-            if(file.toString().endsWith("hbm.xml"))
+            if(file.toString().endsWith(HBM_EXTENSION))
                 configuration.addResource(dir + String.valueOf(file).split(dir)[1]);
         }
     }

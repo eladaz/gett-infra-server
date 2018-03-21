@@ -6,7 +6,11 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+
+import static com.gett.infra.app.utils.ConfigProperties.*;
 
 @Component
 public class AppController {
@@ -24,16 +28,29 @@ public class AppController {
         return loadLogs();
     }
 
+    public Set<String> getAllMappedEntities() {
+        return DatabaseController.getAllMappedEntities();
+    }
+
 
     //PRIVATE METHODS
-
     private String loadVersion() {
-        try (InputStream stream = AppController.class.getResourceAsStream("/version.txt")) {
+        String version = null;
+        try (InputStream stream = AppController.class.getResourceAsStream(MY_PROPERTIES_FILE_PATH)) {
             if (stream == null) {
                 logger.warn("Could not find version file, the version api will return null");
                 return NO_VERSION_FOUND;
             }
-            return new Scanner(stream, "UTF-8").useDelimiter("\\A").next();
+
+            Scanner scanner = new Scanner(stream, "UTF-8").useDelimiter("\\A");
+            while(scanner.hasNext()) {
+                version = scanner.nextLine();
+                if (version.contains("app.version")) {
+                    break;
+                }
+            }
+
+            return version.split("=")[1];
         } catch (Exception e) {
             logger.warn("Could not read version file, the version api will return null", e);
             return NO_VERSION_FOUND;
@@ -41,12 +58,14 @@ public class AppController {
     }
 
     private String loadLogs() {
-        try (InputStream stream = new FileInputStream(new File(System.getProperty("user.dir") + File.separator + "target/log4j-application.log"))) {
+        try (InputStream stream = new FileInputStream(new File(LOG4J_OUTPUT_FILE_PATH))) {
             return new Scanner(stream, "UTF-8").useDelimiter("\\A").next();
         } catch (Exception e) {
             logger.warn("Could not read log file, the log api will return null", e);
             return NO_LOG_FOUND;
         }
     }
+
+
 
 }

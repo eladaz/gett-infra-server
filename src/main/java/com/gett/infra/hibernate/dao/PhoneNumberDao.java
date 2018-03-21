@@ -1,7 +1,5 @@
 package com.gett.infra.hibernate.dao;
 
-
-
 import com.gett.infra.hibernate.pojo.datagenerator.PhoneNumber;
 
 import java.util.List;

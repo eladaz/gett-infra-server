@@ -10,6 +10,7 @@ public interface Constants {
             String VERSION = "version";
             String LOGS = "logs";
 
+            String ENTITIES = "entities";
             String CREDIT_CARD = "credit_card";
             String PERFECTO_DEVICE = "perfecto_device";
             String PHONE_NUMBER = "phone_number";

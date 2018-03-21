@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+<html ng-app="AppService" ng-controller="AppCtrl">
   <head>
     <title ng-bind="pageTitle"></title>
 
@@ -44,10 +44,15 @@
             <span class="icon-bar"></span>
           </button>
           <div class="navbar-brand">
-            ngbp
             <small>
-              <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
-                v<%= verAZsion %>
+              <img class="gett-icon" src="assets/image2vector.svg">
+            </small>
+          </div>
+          <div class="navbar-brand" style="color: black;border-right: 0.5px solid #feb236;">
+            Gett Infra App
+            <small>
+              <a href="https://github.com/eladaz/gett-infra-server/blob/<%= version %>/CHANGELOG.md">
+                v<%= version %>
               </a>
             </small>
           </div>
@@ -55,31 +60,34 @@
         <div class="collapse navbar-collapse" collapse="menuCollapsed">
           <ul class="nav navbar-nav">
             <li ui-sref-active="active">
-              <a href ui-sref="home">
-                <i class="fa fa-home"></i>
+              <a href ui-sref="home"><i class="fa fa-home"></i>
                 Home
               </a>
             </li>
             <li ui-sref-active="active">
-              <a href ui-sref="about">
-                <i class="fa fa-info-circle"></i>
-                What is it?
+              <a href ui-sref="about"><i class="fa fa-info-circle"></i>
+                  What is It?
               </a>
             </li>
+              <li ui-sref-active="active">
+                  <a href ui-sref="entity"><i class="fa fa-info-circle"></i>
+                      Entities
+                  </a>
+              </li>
             <li>
-              <a href="https://github.com/ngbp/ngbp#readme">
+              <a href="https://github.com/eladaz/gett-infra-server#readme">
                 <i class="fa fa-book"></i>
                 Read the Docs
               </a>
             </li>
             <li>
-              <a href="https://github.com/ngbp/ngbp">
+              <a href="https://github.com/eladaz/gett-infra-server">
                 <i class="fa fa-github-alt"></i>
                 Github
               </a>
             </li>
             <li>
-              <a href="https://github.com/ngbp/ngbp/issues">
+              <a href="https://github.com/eladaz/gett-infra-server/issues">
                 <i class="fa fa-comments"></i>
                 Support
               </a>
@@ -103,11 +111,10 @@
           
 
           <p>
-            (c) 2013 <a href="http://www.joshdavidmiller.com">Josh David Miller</a>. 
-            <a href="http://github.com/ngbp/ngbp/fork_select">Fork this</a>
-            to kickstart your next project.
+            (c) 2018 <a href="http://www.joshdavidmiller.com">Automation Infra Team</a>.
+            App Server for manage assets for automation use
             <br />
-            ngbp is based on
+            'Gett Infra App' is based on
             <a href="http://www.angularjs.org">AngularJS</a>,
             <a href="http://getbootstrap.com">Bootstrap</a>, 
             <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,

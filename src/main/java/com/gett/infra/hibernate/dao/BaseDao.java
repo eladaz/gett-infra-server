@@ -2,6 +2,7 @@ package com.gett.infra.hibernate.dao;
 
 import com.gett.infra.hibernate.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class BaseDao {
@@ -18,6 +19,10 @@ public class BaseDao {
         currentSession = HibernateUtil.getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return HibernateUtil.getSessionFactory();
     }
 
     public void closeCurrentSession() {

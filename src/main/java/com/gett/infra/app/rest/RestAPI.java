@@ -3,6 +3,8 @@ package com.gett.infra.app.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gett.infra.app.controllers.AppController;
 import com.gett.infra.app.dto.CreditCardDTO;
+import com.gett.infra.app.controllers.DatabaseController;
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static com.gett.infra.app.rest.Constants.Rest.*;
 import static java.lang.String.format;
@@ -28,6 +32,9 @@ public class RestAPI {
 
     @Autowired
     AppController appController;
+
+    @Autowired
+    DatabaseController databaseService;
 
     private final static Logger logger = Logger.getLogger(RestAPI.class);
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -59,6 +66,15 @@ public class RestAPI {
         logger.info(format("Calling %s request, Resource: %s\n", RequestMethod.GET, getMethodName()));
         String logs = appController.getLogs();
         return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(logs);
+    }
+
+    @RequestMapping(value = ENTITIES, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> getAllEntities() {
+        logger.info(format("Calling %s request, Resource: %s\n", RequestMethod.GET, getMethodName()));
+        Set<String> logs = DatabaseController.getAllMappedEntities();
+        String json = new Gson().toJson(logs);
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
     }
 
     // POST RESOURCES

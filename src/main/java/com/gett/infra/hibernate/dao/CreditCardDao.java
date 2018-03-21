@@ -1,6 +1,5 @@
 package com.gett.infra.hibernate.dao;
 
-
 import com.gett.infra.hibernate.pojo.datagenerator.CreditCard;
 
 import java.util.List;
