@@ -1,6 +1,7 @@
 package com.gett.infra.hibernate.dao;
 
 import com.gett.infra.hibernate.pojo.datagenerator.CreditCard;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -12,6 +13,21 @@ public class CreditCardDao extends BaseDao implements EntityDaoInterface<CreditC
     public void persist(CreditCard entity) {
         getCurrentSession().save(entity);
 
+    }
+
+    @Override
+    public void batchProcessing(List<CreditCard> entities) {
+        final int[] count = {0};
+        Session currentSession = getCurrentSession();
+        entities.forEach((entity) -> {
+            currentSession.save(entity);
+            if( count[0] % 50 == 0 ) {
+                //flush a batch of inserts and release memory:
+                currentSession.flush();
+                currentSession.clear();
+            }
+            count[0]++;
+        });
     }
 
     @Override

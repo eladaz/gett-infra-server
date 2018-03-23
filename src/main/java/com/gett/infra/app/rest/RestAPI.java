@@ -34,7 +34,7 @@ public class RestAPI {
     AppController appController;
 
     @Autowired
-    DatabaseController databaseService;
+    DatabaseController databaseController;
 
     private final static Logger logger = Logger.getLogger(RestAPI.class);
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -72,9 +72,17 @@ public class RestAPI {
     @ResponseBody
     public ResponseEntity<String> getAllEntities() {
         logger.info(format("Calling %s request, Resource: %s\n", RequestMethod.GET, getMethodName()));
-        Set<String> logs = DatabaseController.getAllMappedEntities();
+        Set<String> logs = databaseController.getAllMappedEntities();
         String json = new Gson().toJson(logs);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
+    }
+
+    @RequestMapping(value = CREDIT_CARD, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> runCreditCards() {
+        logger.info(format("Calling %s request, Resource: %s\n", RequestMethod.GET, getMethodName()));
+        databaseController.addAllCreditCards();
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body("");
     }
 
     // POST RESOURCES

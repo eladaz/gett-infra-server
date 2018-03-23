@@ -10,5 +10,6 @@ public class CreditCardDTO {
     public int id;
     public String scrumName;
     public String cardNumber;
+    private String issuingNetwork;
 
 }

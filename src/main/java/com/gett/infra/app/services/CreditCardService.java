@@ -3,9 +3,11 @@ package com.gett.infra.app.services;
 import com.gett.infra.hibernate.dao.CreditCardDao;
 import com.gett.infra.hibernate.pojo.datagenerator.CreditCard;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class CreditCardService {
 
     private static CreditCardDao creditCardDao;
@@ -17,16 +19,24 @@ public class CreditCardService {
 
     public void persist(CreditCard entity) {
         logger.info("*** Persist CreditCard - start ***");
-        creditCardDao.openCurrentSessionwithTransaction();
+        creditCardDao.openCurrentSessionWithTransaction();
         creditCardDao.persist(entity);
-        creditCardDao.closeCurrentSessionwithTransaction();
+        creditCardDao.closeCurrentSessionWithTransaction();
         logger.info("*** Persist CreditCard - end ***");
     }
 
+    public void batchProcessing(List<CreditCard> entities) {
+        logger.info("*** Batch Processing CreditCards - start ***");
+        creditCardDao.openCurrentSessionWithTransaction();
+        creditCardDao.batchProcessing(entities);
+        creditCardDao.closeCurrentSessionWithTransaction();
+        logger.info("*** Batch Processing CreditCards - end ***");
+    }
+
     public void update(CreditCard entity) {
-        creditCardDao.openCurrentSessionwithTransaction();
+        creditCardDao.openCurrentSessionWithTransaction();
         creditCardDao.update(entity);
-        creditCardDao.closeCurrentSessionwithTransaction();
+        creditCardDao.closeCurrentSessionWithTransaction();
     }
 
     public CreditCard findById(String id) {
@@ -37,10 +47,10 @@ public class CreditCardService {
     }
 
     public void delete(String id) {
-        creditCardDao.openCurrentSessionwithTransaction();
+        creditCardDao.openCurrentSessionWithTransaction();
         CreditCard creditCard = creditCardDao.findById(id);
         creditCardDao.delete(creditCard);
-        creditCardDao.closeCurrentSessionwithTransaction();
+        creditCardDao.closeCurrentSessionWithTransaction();
     }
 
     public List<CreditCard> findAll() {
@@ -54,9 +64,9 @@ public class CreditCardService {
     }
 
     public void deleteAll() {
-        creditCardDao.openCurrentSessionwithTransaction();
+        creditCardDao.openCurrentSessionWithTransaction();
         creditCardDao.deleteAll();
-        creditCardDao.closeCurrentSessionwithTransaction();
+        creditCardDao.closeCurrentSessionWithTransaction();
     }
 
     public CreditCardDao creditCardDao() {

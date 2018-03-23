@@ -49,21 +49,63 @@ angular.module('Entity', [
             onRegisterApi: function (gridApi) {
                 $scope.gridApi = gridApi;
             }
-
-
         };
 
-        getEntities();
-
-        function getEntities() {
+        (function(){
             restService.getAllEntities()
                 .then(function (entities) {
-                    $scope.gridOptions.data = entities.data;
+                    $scope.dropdown_items = entities.data;
+                    $scope.default_select = entities.data[0];
                 })
                 .then(function (error) {
                     $scope.status = 'Unable to fetch all mapped entities: ' + error.message;
                 });
-        }
+        })();
+
+        (function(){
+            $scope.gridOptions.data = [
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
+                {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"}
+            ];
+        })();
+
+        $scope.getTableHeight = function () {
+            var rowHeight = 30; // your row height
+            var headerHeight = 30; // your header height
+            return {
+                height: ($scope.gridOptions.data.length * rowHeight + headerHeight) + "px",
+                'max-height': '800px'
+            };
+        };
+
+        $scope.go_to = function (choice) {
+            $scope.default_select = choice;
+        };
+
+        // getEntities();
+
+        // function getEntities() {
+        //     restService.getAllEntities()
+        //         .then(function (entities) {
+        //             $scope.dropdown_items = entities.data;
+        //             $scope.default_select = entities.data[0];
+        //         })
+        //         .then(function (error) {
+        //             $scope.status = 'Unable to fetch all mapped entities: ' + error.message;
+        //         });
+        // }
 
         // function getEntities() {
         //     restService.getAllEntities()
@@ -75,45 +117,8 @@ angular.module('Entity', [
         //         });
         // }
 
-
-        $scope.default_select = "Credit Card";
-
-        $scope.dropdown_items = [
-            "Credit Card",
-            "Phone Number",
-            "Perfecto Device"
-        ];
-
         $scope.go_to = function (choice) {
             $scope.default_select = choice;
         };
-
-        $scope.gridOptions.data = [
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"},
-            {first: "a", last: "g", aa: "a", dd: "dd", sss: "sde", z: "a", x: "g", c: "a", v: "dd", n: "sde"}
-        ];
-
-        $scope.getTableHeight = function () {
-            var rowHeight = 30; // your row height
-            var headerHeight = 30; // your header height
-            return {
-                height: ($scope.gridOptions.data.length * rowHeight + headerHeight) + "px",
-                'max-height': '800px'
-            };
-        };
-
-        // angular.element(document.getElementsByClassName('grid')[0]).css('height', $scope.gridOptions.data.length*25 + 'px');
 
     });

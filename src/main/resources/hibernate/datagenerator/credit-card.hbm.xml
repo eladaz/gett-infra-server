@@ -11,8 +11,12 @@
         <property name="scrumName" type="java.lang.String">
             <column name="SCRUM_NAME"/>
         </property>
+
         <property name="cardNumber" type="java.lang.String">
             <column name="CARD_NUMBER"/>
+        </property>
+        <property name="issuingNetwork" type="java.lang.String">
+            <column name="ISSUING_NETWORK"/>
         </property>
     </class>
 </hibernate-mapping>

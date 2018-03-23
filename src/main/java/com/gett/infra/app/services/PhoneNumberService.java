@@ -17,16 +17,16 @@ public class PhoneNumberService {
 
     public void persist(PhoneNumber entity) {
         logger.info("*** Persist PhoneNumber - start ***");
-        phoneNumberDao.openCurrentSessionwithTransaction();
+        phoneNumberDao.openCurrentSessionWithTransaction();
         phoneNumberDao.persist(entity);
-        phoneNumberDao.closeCurrentSessionwithTransaction();
+        phoneNumberDao.closeCurrentSessionWithTransaction();
         logger.info("*** Persist PhoneNumber - end ***");
     }
 
     public void update(PhoneNumber entity) {
-        phoneNumberDao.openCurrentSessionwithTransaction();
+        phoneNumberDao.openCurrentSessionWithTransaction();
         phoneNumberDao.update(entity);
-        phoneNumberDao.closeCurrentSessionwithTransaction();
+        phoneNumberDao.closeCurrentSessionWithTransaction();
     }
 
     public PhoneNumber findById(String id) {
@@ -37,10 +37,10 @@ public class PhoneNumberService {
     }
 
     public void delete(String id) {
-        phoneNumberDao.openCurrentSessionwithTransaction();
+        phoneNumberDao.openCurrentSessionWithTransaction();
         PhoneNumber phoneNumber = phoneNumberDao.findById(id);
         phoneNumberDao.delete(phoneNumber);
-        phoneNumberDao.closeCurrentSessionwithTransaction();
+        phoneNumberDao.closeCurrentSessionWithTransaction();
     }
 
     public List<PhoneNumber> findAll() {
@@ -54,9 +54,9 @@ public class PhoneNumberService {
     }
 
     public void deleteAll() {
-        phoneNumberDao.openCurrentSessionwithTransaction();
+        phoneNumberDao.openCurrentSessionWithTransaction();
         phoneNumberDao.deleteAll();
-        phoneNumberDao.closeCurrentSessionwithTransaction();
+        phoneNumberDao.closeCurrentSessionWithTransaction();
     }
 
     public PhoneNumberDao creditCardDao() {

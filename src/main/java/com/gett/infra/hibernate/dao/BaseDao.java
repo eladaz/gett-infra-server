@@ -15,7 +15,7 @@ public class BaseDao {
         return currentSession;
     }
 
-    public Session openCurrentSessionwithTransaction() {
+    public Session openCurrentSessionWithTransaction() {
         currentSession = HibernateUtil.getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
@@ -29,7 +29,7 @@ public class BaseDao {
         currentSession.close();
     }
 
-    public void closeCurrentSessionwithTransaction() {
+    public void closeCurrentSessionWithTransaction() {
         currentTransaction.commit();
         currentSession.close();
     }

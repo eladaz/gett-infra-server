@@ -15,6 +15,11 @@ public class PhoneNumberDao extends BaseDao implements EntityDaoInterface<PhoneN
     }
 
     @Override
+    public void batchProcessing(List<PhoneNumber> entities) {
+
+    }
+
+    @Override
     public void update(PhoneNumber entity) {
         getCurrentSession().update(entity);
 

@@ -15,6 +15,11 @@ public class PerfectoDeviceDao extends BaseDao implements EntityDaoInterface<Per
     }
 
     @Override
+    public void batchProcessing(List<PerfectoDevice> entities) {
+
+    }
+
+    @Override
     public void update(PerfectoDevice entity) {
         getCurrentSession().update(entity);
 

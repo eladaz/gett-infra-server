@@ -17,16 +17,16 @@ public class PerfectoDeviceService {
 
     public void persist(PerfectoDevice entity) {
         logger.info("*** Persist PerfectoDevice - start ***");
-        perfectoDeviceDao.openCurrentSessionwithTransaction();
+        perfectoDeviceDao.openCurrentSessionWithTransaction();
         perfectoDeviceDao.persist(entity);
-        perfectoDeviceDao.closeCurrentSessionwithTransaction();
+        perfectoDeviceDao.closeCurrentSessionWithTransaction();
         logger.info("*** Persist PerfectoDevice - end ***");
     }
 
     public void update(PerfectoDevice entity) {
-        perfectoDeviceDao.openCurrentSessionwithTransaction();
+        perfectoDeviceDao.openCurrentSessionWithTransaction();
         perfectoDeviceDao.update(entity);
-        perfectoDeviceDao.closeCurrentSessionwithTransaction();
+        perfectoDeviceDao.closeCurrentSessionWithTransaction();
     }
 
     public PerfectoDevice findById(String id) {
@@ -37,10 +37,10 @@ public class PerfectoDeviceService {
     }
 
     public void delete(String id) {
-        perfectoDeviceDao.openCurrentSessionwithTransaction();
+        perfectoDeviceDao.openCurrentSessionWithTransaction();
         PerfectoDevice perfectoDevice = perfectoDeviceDao.findById(id);
         perfectoDeviceDao.delete(perfectoDevice);
-        perfectoDeviceDao.closeCurrentSessionwithTransaction();
+        perfectoDeviceDao.closeCurrentSessionWithTransaction();
     }
 
     public List<PerfectoDevice> findAll() {
@@ -54,9 +54,9 @@ public class PerfectoDeviceService {
     }
 
     public void deleteAll() {
-        perfectoDeviceDao.openCurrentSessionwithTransaction();
+        perfectoDeviceDao.openCurrentSessionWithTransaction();
         perfectoDeviceDao.deleteAll();
-        perfectoDeviceDao.closeCurrentSessionwithTransaction();
+        perfectoDeviceDao.closeCurrentSessionWithTransaction();
     }
 
     public PerfectoDeviceDao creditCardDao() {

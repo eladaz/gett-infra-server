@@ -6,11 +6,9 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
-import static com.gett.infra.app.utils.ConfigProperties.*;
+import static com.gett.infra.app.utils.Paths.*;
 
 @Component
 public class AppController {
@@ -27,11 +25,6 @@ public class AppController {
     public String getLogs() {
         return loadLogs();
     }
-
-    public Set<String> getAllMappedEntities() {
-        return DatabaseController.getAllMappedEntities();
-    }
-
 
     //PRIVATE METHODS
     private String loadVersion() {
