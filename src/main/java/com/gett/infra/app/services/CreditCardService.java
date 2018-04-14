@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class CreditCardService {
 
     private static CreditCardDao creditCardDao;
@@ -26,11 +25,11 @@ public class CreditCardService {
     }
 
     public void batchProcessing(List<CreditCard> entities) {
-        logger.info("*** Batch Processing CreditCards - start ***");
+        logger.info("*** Add List of CreditCards - start ***");
         creditCardDao.openCurrentSessionWithTransaction();
         creditCardDao.batchProcessing(entities);
         creditCardDao.closeCurrentSessionWithTransaction();
-        logger.info("*** Batch Processing CreditCards - end ***");
+        logger.info("*** Add List of CreditCards - end ***");
     }
 
     public void update(CreditCard entity) {
@@ -40,10 +39,21 @@ public class CreditCardService {
     }
 
     public CreditCard findById(String id) {
+        logger.info("*** Get Credit Card By ID - start ***");
         creditCardDao.openCurrentSession();
         CreditCard creditCard = creditCardDao.findById(id);
         creditCardDao.closeCurrentSession();
+        logger.info("*** Get Credit Card By ID - end ***");
         return creditCard;
+    }
+
+    public List<CreditCard> findBySpecificProperty(String property, String value) {
+        logger.info("*** Get Credit Cards By Specific property - start ***");
+        creditCardDao.openCurrentSession();
+        List<CreditCard> creditCards = creditCardDao.findByProperty(property, value);
+        creditCardDao.closeCurrentSession();
+        logger.info("*** Get Credit Cards Specific property - end ***");
+        return creditCards;
     }
 
     public void delete(String id) {

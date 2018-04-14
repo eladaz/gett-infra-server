@@ -2,33 +2,27 @@ package com.gett.infra.app.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gett.infra.app.controllers.AppController;
-import com.gett.infra.app.dto.CreditCardDTO;
 import com.gett.infra.app.controllers.DatabaseController;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import static com.gett.infra.app.rest.Constants.Rest.*;
+import static com.gett.infra.app.rest.Constants.Rest.HOME;
 import static java.lang.String.format;
 
 @Controller
 @RequestMapping(API)
-public class RestAPI {
+public class RestResource {
 
     @Autowired
     AppController appController;
@@ -36,7 +30,7 @@ public class RestAPI {
     @Autowired
     DatabaseController databaseController;
 
-    private final static Logger logger = Logger.getLogger(RestAPI.class);
+    private final static Logger logger = Logger.getLogger(RestResource.class);
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private String getMethodName() {
@@ -51,7 +45,7 @@ public class RestAPI {
         return mvc;
     }
 
-    // GET RESOURCES
+    //GET RESOURCES
     @RequestMapping(value = VERSION, method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> getVersion() {
@@ -75,34 +69,6 @@ public class RestAPI {
         Set<String> logs = databaseController.getAllMappedEntities();
         String json = new Gson().toJson(logs);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
-    }
-
-    @RequestMapping(value = CREDIT_CARD, method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<String> runCreditCards() {
-        logger.info(format("Calling %s request, Resource: %s\n", RequestMethod.GET, getMethodName()));
-        databaseController.addAllCreditCards();
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body("");
-    }
-
-    // POST RESOURCES
-    @RequestMapping(value = CREDIT_CARD, method = RequestMethod.POST, produces = "application/json")
-    @ResponseBody
-    public ResponseEntity<String> addCreditCard(@RequestBody String jsonString) {
-        try {
-            List<CreditCardDTO> dtos = new ArrayList<>();
-            JSONArray testsArray = new JSONArray(jsonString);
-            for (int i = 0; i < testsArray.length(); i++) {
-                dtos.add(objectMapper.readValue(testsArray.getString(i), CreditCardDTO.class));
-            }
-
-            logger.info(format("Calling %s request, Resource: %s\n", RequestMethod.POST, getMethodName()));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body("");
     }
 
 }

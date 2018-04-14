@@ -32,6 +32,11 @@ public class PhoneNumberDao extends BaseDao implements EntityDaoInterface<PhoneN
     }
 
     @Override
+    public List<PhoneNumber> findByProperty(String property, String value) {
+        return null;
+    }
+
+    @Override
     public void delete(PhoneNumber entity) {
         getCurrentSession().delete(entity);
     }

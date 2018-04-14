@@ -18,6 +18,9 @@ public class AppController {
     private static final String NO_VERSION_FOUND = "NO_VERSION_FOUND";
     private static final String NO_LOG_FOUND = "NO_LOG_FOUND";
 
+    public AppController() {
+    }
+
     public String getVersion() {
         return loadVersion();
     }

@@ -10,9 +10,7 @@ public class CreditCard {
 
     private int id;
     private String scrumName;
-    @JsonProperty("CardNumber")
     private String cardNumber;
-    @JsonProperty("IssuingNetwork")
     private String issuingNetwork;
 
     public CreditCard() {

@@ -13,6 +13,8 @@ public interface EntityDaoInterface<T, Id extends Serializable> {
 
     T findById(Id id);
 
+    List<T> findByProperty(String property, String value);
+
     void delete(T entity);
 
     List<T> findAll();

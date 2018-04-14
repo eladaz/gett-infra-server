@@ -1,5 +1,6 @@
 package com.gett.infra.hibernate;
 
+import com.gett.infra.app.utils.AppSettings;
 import com.gett.infra.app.utils.DBConfig;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -33,8 +34,11 @@ public class HibernateUtil {
             configuration.setProperty(USER_NAME, dbConfig.DB_USER_NAME);
             configuration.setProperty(PASSWORD, dbConfig.DB_PASSWORD);
             configuration.setProperty(HBM2DDL, dbConfig.HBM2_DDL);
+            configuration.setProperty(SHOWSQL, dbConfig.SHOW_SQL);
 
             addMappingFiles(HIBERNATE_MAPPING_DIR);
+
+            AppSettings.setProperties(configuration.getProperties());
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             // Create the SessionFactory from hibernate.cfg.xml

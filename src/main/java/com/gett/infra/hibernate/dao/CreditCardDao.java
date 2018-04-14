@@ -33,13 +33,18 @@ public class CreditCardDao extends BaseDao implements EntityDaoInterface<CreditC
     @Override
     public void update(CreditCard entity) {
         getCurrentSession().update(entity);
-
     }
 
     @Override
     public CreditCard findById(String id) {
-        CreditCard creditCard = (CreditCard) getCurrentSession().get(CreditCard.class, id);
-        return creditCard;
+        return (CreditCard) getCurrentSession().get(CreditCard.class, id);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<CreditCard> findByProperty(String property, String value) {
+        return  (List<CreditCard>) getCurrentSession()
+                .createQuery(String.format("From %s where %s = %s", entityName, property, value)).list();
     }
 
     @Override
@@ -50,9 +55,9 @@ public class CreditCardDao extends BaseDao implements EntityDaoInterface<CreditC
     @Override
     @SuppressWarnings("unchecked")
     public List<CreditCard> findAll() {
-        List<CreditCard> creditCard = (List<CreditCard>) getCurrentSession().createQuery(String.format("From %s", entityName)).list();
-        return creditCard;
-
+        return  (List<CreditCard>) getCurrentSession()
+                .createQuery(String.format("From %s", entityName))
+                .list();
     }
 
     @Override
@@ -62,5 +67,13 @@ public class CreditCardDao extends BaseDao implements EntityDaoInterface<CreditC
             delete(entity);
         }
 
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CreditCard> findByScram(String scrumName) {
+        return  (List<CreditCard>) getCurrentSession()
+                .createQuery("from CreditCard where scrumName = :scrumName")
+                .setParameter("scrumName", scrumName)
+                .list();
     }
 }

@@ -32,6 +32,11 @@ public class PerfectoDeviceDao extends BaseDao implements EntityDaoInterface<Per
     }
 
     @Override
+    public List<PerfectoDevice> findByProperty(String property, String value) {
+        return null;
+    }
+
+    @Override
     public void delete(PerfectoDevice entity) {
         getCurrentSession().delete(entity);
     }

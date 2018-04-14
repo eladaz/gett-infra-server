@@ -16,7 +16,8 @@ public class DBConfig {
     private final static Logger logger = Logger.getLogger(DBConfig.class);
 
     public static final String TYPE = "db.type";
-    public static final String HBM2DDL = "hbm2ddl.auto";
+    public static final String HBM2DDL = "hibernate.hbm2ddl.auto";
+    public static final String SHOWSQL = "hibernate.show_sql";
     public static final String CONNECTION_URL = "hibernate.connection.url";
     public static final String CONNECTION_DRIVER = "hibernate.connection.driver_class";
     public static final String DB_HOST_NAME = "hibernate.db.host";
@@ -92,6 +93,10 @@ public class DBConfig {
 
     public String HBM2_DDL = System.getProperty(HBM2DDL,
             readStringProperty(HBM2DDL, "update")
+    );
+
+    public String SHOW_SQL = System.getProperty(SHOWSQL,
+            readStringProperty(SHOWSQL, "false")
     );
 
     public String JDBC_CONNECTION = buildURL();

@@ -21,13 +21,13 @@ import static com.gett.infra.app.utils.Paths.CREDIT_CARDS_STATIC_DATA;
 @Component
 public class DatabaseController extends BaseDao {
 
-    @Autowired
-    private static CreditCardService creditCardService;
+    private static CreditCardService creditCardService = new CreditCardService();
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final SessionFactory sessionFactory = getSessionFactory();
     private final static Logger logger = Logger.getLogger(DatabaseController.class);
 
+    //////////////////////////// ENTITIES /////////////////////////////
     public Set<String> getAllMappedEntities() {
         logger.info("*** Get All Mapped Entities - start ***");
         Set<String> entityList = new HashSet<>();
@@ -43,8 +43,30 @@ public class DatabaseController extends BaseDao {
     }
 
     //////////////////////////// CREDIT CARDS /////////////////////////////
-    public void addAllCreditCards() {
-        logger.info("*** Add All Credit Cards - start ***");
+
+    //GET
+    public CreditCard getCreditCard(String id) {
+        return creditCardService.findById(id);
+    }
+
+    public List<CreditCard> getCreditCards(String property, String value) {
+        return creditCardService.findBySpecificProperty(property, value);
+    }
+
+    public List<CreditCard> getAllCreditCards() {
+        return creditCardService.findAll();
+    }
+
+    //ADD
+    public void addCreditCard(CreditCard creditCard) {
+        creditCardService.persist(creditCard);
+    }
+
+    public void addAllCreditCards(List<CreditCard> creditCards) {
+        creditCardService.batchProcessing(creditCards);
+    }
+
+    public void addAllStaticCreditCards() {
         List<CreditCard> creditCards = new ArrayList<>();
         File[] files = new File(Objects.requireNonNull(DatabaseController.class
                         .getClassLoader()
@@ -57,15 +79,22 @@ public class DatabaseController extends BaseDao {
                             new TypeReference<List<CreditCard>>() {});
                     creditCards.addAll(cards);
                 } catch (IOException e) {
+                    logger.error("Failed to add all credit cards: " + e.getMessage());
                     e.printStackTrace();
                 }
             }
         }
         creditCardService.batchProcessing(creditCards);
-
-        logger.info("*** Add All Credit Cards - end ***");
     }
 
 
+    // DELETE
+    public void deleteCreditCard(String id) {
+        creditCardService.delete(id);
+    }
+
+    public void deleteAllCreditCards() {
+        creditCardService.deleteAll();
+    }
 
 }
